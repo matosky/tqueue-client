@@ -17,6 +17,7 @@
    padding: 2rem 0;
    font-weight: 600;
    white-space: nowrap;
+   cursor: pointer;
 }
 
 @media screen and (max-width: 765px){
