@@ -1,0 +1,84 @@
+.Table {
+  display: table;
+  border: 1px solid #000;
+  border-radius: 10px 10px 0 0;
+  border-collapse: separate;
+  border-spacing: 0 10px;
+  padding: 0 0.2rem;
+  /* background-color: antiquewhite; */
+}
+
+.Title {
+  display: table-caption;
+  text-align: center;
+  font-weight: bold;
+  font-size: larger;
+}
+.Heading {
+  display: table-row;
+  font-weight: bold;
+}
+
+.Heading .Cell:first-child {
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    border-bottom: none;
+
+}
+
+.Heading .Cell:last-child {
+    border-left: none;
+    border-top: none;
+    border-right: none;
+    border-bottom: none;
+
+}
+
+.Heading .Cell:nth-child(2) {
+    border-left: none; 
+    border-right: none;
+    border-top: none;
+    border-bottom: none;
+}
+
+.Heading .Cell:nth-child(3) {
+    border-left: none; 
+    border-right: none;
+    border-top: none;
+    border-bottom: none;
+}
+.Row {
+  display: table-row;
+  cursor:grab;
+}
+.Cell {
+  display: table-cell;
+  border: solid;
+  border-width: thin;
+  padding: 1rem 1rem;
+  white-space: nowrap;
+  text-align: left;
+}
+
+.Row .Cell:first-child {
+    border-left: 10px solid red; 
+    border-right: none;
+    border-radius: 8px 0 0 8px;
+}
+
+.Row .Cell:last-child {
+    border-left: none;
+    border-radius: 0 8px 8px 0;
+}
+
+.Row .Cell:nth-child(2) {
+    border-left: none; 
+    border-right: none;
+}
+
+.Row .Cell:nth-child(3) {
+    border-left: none; 
+    border-right: none;
+}
+  

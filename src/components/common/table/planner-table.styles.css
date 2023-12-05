@@ -1,0 +1,110 @@
+.Table {
+     width: 100%;
+     max-width: 100%;
+    display: table;
+    border: 1px solid #000;
+    border-radius: 10px 10px 0 0;
+    border-collapse: separate;
+    border-spacing: 0 10px;
+    padding: 0 0.2rem;
+    background-color: antiquewhite;
+  }
+  
+  .Title {
+    display: table-caption;
+    text-align: center;
+    font-weight: bold;
+    font-size: larger;
+  }
+  .PlannerHeading {
+    display: table-row;
+    font-weight: bold;
+  }
+
+  .PlannerHeading .PlannerHeadTableCell{
+    display: table-cell;
+    border: solid;
+    border-width: thin;
+    padding: 0.5rem 3rem;
+    white-space: nowrap;
+    text-align: left;
+  }
+  
+  .PlannerHeading .PlannerHeadTableCell:first-child {
+      border-left: none;
+      border-right: none;
+      border-top: none;
+      border-bottom: none;
+  
+  }
+  
+  .PlannerHeading .PlannerHeadTableCell:last-child {
+      border-left: none;
+      border-top: none;
+      border-right: none;
+      border-bottom: none;
+  
+  }
+  
+  .PlannerHeading .PlannerHeadTableCell:nth-child(2) {
+      border-left: none; 
+      border-right: none;
+      border-top: none;
+      border-bottom: none;
+  }
+  
+  .PlannerHeading .PlannerHeadTableCell:nth-child(3) {
+      border-left: none; 
+      border-right: none;
+      border-top: none;
+      border-bottom: none;
+  }
+
+  .PlannerHeading .PlannerHeadTableCell:nth-child(4) {
+    border-left: none; 
+    border-right: none;
+    border-top: none;
+    border-bottom: none;
+}
+  .tablePlannerRow {
+    display: table-row;
+    cursor:grab;
+  }
+
+  .PlannerTableCell {
+    display: table-cell;
+    border: solid;
+    border-width: thin;
+    padding: 2rem 3rem;
+    white-space: nowrap;
+    text-align: left;
+  }
+  
+  .tablePlannerRow .PlannerTableCell:first-child {
+      border-left: 10px solid green; 
+      /* border-right: none; */
+      border-radius: 8px 0 0 8px;
+  }
+  
+  .tablePlannerRow .PlannerTableCell:last-child {
+      /* border-left: none; */
+      border-radius: 0 8px 8px 0;
+  }
+  
+  .tablePlannerRow .PlannerTableCell:nth-child(2) {
+      /* border-left: none; 
+      border-right: none; */
+  }
+  
+  .tablePlannerRow .PlannerTableCell:nth-child(3) {
+      /* border-left: none; 
+      border-right: none; */
+  }
+
+  .tablePlannerRow .PlannerTableCell:nth-child(4) {
+    /* border-left: none; 
+    border-right: none; */
+}
+  
+    
+  

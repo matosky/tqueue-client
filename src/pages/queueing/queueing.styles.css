@@ -1,0 +1,13 @@
+.queueing-wrap{
+  width: 100%;
+  height: 100vh;
+}
+
+.queueing{
+  width: 100%;
+  height: 100%;
+  padding: 2rem 3rem;
+  display: grid;
+  gap: 20px;
+  grid-template-columns: 1fr 1fr;
+}
