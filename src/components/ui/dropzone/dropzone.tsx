@@ -61,9 +61,20 @@ const Dropzone: React.FC<DropzoneProps> = ({
 
 
 
+const displayText = (customer: string | undefined): string => {
+  const customers = customer?.split(",") ?? [];
+  const hasMoreCustomersInSameSlot = customers.length > 1;
+
+  if (hasMoreCustomersInSameSlot) {
+    const firstCustomer = customers[0].trim();
+    const remainingCustomersCount = customers.length - 1;
+    return `${firstCustomer} and ${remainingCustomersCount}+`;
+  }
+  return customer ?? "";
+};
   return (
     <div className="PlannerTableCell" ref={drop} style={{ backgroundColor }}>
-      <p>{isActive ? "" : text}</p>
+      <p>{isActive ? "" : displayText(text)}</p>
     </div>
   );
 };

@@ -1,19 +1,14 @@
+import React, { useState, useEffect } from 'react';
 import { Header } from "../../components/ui/header/header";
 import { CustomerTable } from "../../components/common/table/customerTable";
 import "./queueing.styles.css";
 import { PlannerTable } from "../../components/common/table/plannerTable";
 import { useMutation, useQuery } from "react-query";
-import {
-  DeliveryRequest,
-  getCurrentPlanner,
-  updateCurrentPlanner,
-} from "../../network/planner";
-import { useEffect, useState } from "react";
+import { DeliveryRequest, getCurrentPlanner, updateCurrentPlanner } from "../../network/planner";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import InstructionModal from '../../components/ui/modal/modal';
 
-// Dummy customers in queue for booking
-// API to be prepared in future from server
 const initialCustomers = [
   {
     customerID: 1,
@@ -28,6 +23,14 @@ const initialCustomers = [
     dropOffLocation: "456 Oak St",
   },
 ];
+
+interface Customer {
+  customerID: number;
+  customerName: string;
+  pickUpLocation: string;
+  dropOffLocation: string;
+}
+
 export interface DraggedItem {
   data: {
     customerID: number;
@@ -43,9 +46,10 @@ export interface DraggedItem {
 
 const Queueing = () => {
   const [delivery, setDelivery] = useState<DeliveryRequest | undefined>();
-  const { data, error, isLoading } = useQuery("plannerData", () =>
-    getCurrentPlanner()
-  );
+  const [customers, setCustomers] = useState<Customer[]>();
+  const [showInstructionModal, setShowInstructionModal] = useState(true);
+  const [forceUpdate, setForceUpdate] = useState(false); 
+  const { data, error, isLoading } = useQuery("plannerData", () => getCurrentPlanner());
   const showToast = () => {
     toast.success('Customer delivery in queue !!!');
   };
@@ -62,14 +66,14 @@ const Queueing = () => {
       console.log("delivery", delivery);
       mutate(delivery, {
         onSuccess: (data) => {
-          console.log(data);
-            // Show success toast
-            toast.success('Delivery shipped successfully!');
+          // Show success toast
+          setForceUpdate((prev) => !prev);
+          toast.success('Delivery shipped successfully!');
         },
         onError: (error) => {
           console.log("error", error);
-           // Show error toast
-           toast.error('Failed to update delivery!');
+          // Show error toast
+          toast.error('Failed to update delivery!');
         },
       });
     } else {
@@ -84,6 +88,8 @@ const Queueing = () => {
   }: DraggedItem) => {
     // console.log("datafff", data);
     if (data) {
+      const newCustomers = customers?.filter((cus: Customer) => cus.customerID !== data?.customerID)
+      setCustomers(newCustomers)
       const customerDelivery = {
         pickUpLocation: data?.pickUpLocation,
         dropOffLocation: data?.dropOffLocation,
@@ -96,12 +102,14 @@ const Queueing = () => {
         slotNumberOfCurrentDay,
         currentDay,
         customerDelivery: customerDelivery
-      }; 
+      };
       setDelivery(item)
     }
   };
-  
-  
+
+  useEffect(() => {
+    setCustomers(initialCustomers);
+  }, [forceUpdate]);
 
   useEffect(() => {
     // Call mutate when Delivery has complete data
@@ -109,15 +117,20 @@ const Queueing = () => {
       handleMutate();
     }
   }, [delivery]);
+
+  const closeModal = () => {
+    setShowInstructionModal(false);
+  }
+
   return (
-    <div>
+    <div className='queueing-wrap'>
       <Header />
       <section className="queueing">
         <div>
           <h3>
             Showing list of 1 - {initialCustomers.length} customers in queue:
           </h3>
-          <CustomerTable customers={initialCustomers} />
+          {customers && <CustomerTable customers={customers} />}
         </div>
         <div>
           <h3>Deliverables for Next 7 Days</h3>
@@ -128,6 +141,7 @@ const Queueing = () => {
           )}
         </div>
       </section>
+      {showInstructionModal && <InstructionModal isOpen={showInstructionModal} closeModal={closeModal} />}
     </div>
   );
 };

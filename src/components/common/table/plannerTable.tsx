@@ -3,7 +3,7 @@ import "./planner-table.styles.css";
 import { Dropzone } from "../../ui/dropzone/dropzone";
 import { DeliveryRequest } from "../../../network/planner";
 import { DraggedItem } from "../../../pages/queueing/queueing";
-import { formatTimestampToDate } from "../../../helpers/format-time-stamps";
+import { formatTimestampToDate, formatToReadableTime } from "../../../helpers/format-time-stamps";
 
 interface Delivery {
   customerID: string;
@@ -70,7 +70,7 @@ const TableRow: React.FC<TableRowProps> = ({
   return (
     <div className="tablePlannerRow">
       <div className="PlannerTableCell">
-        <p>{currentDay}</p>
+        <p>{formatToReadableTime(currentDay)}</p>
       </div>
       <Dropzone
         text={deliveriesForPlannerSlot1}

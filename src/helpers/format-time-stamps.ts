@@ -8,3 +8,10 @@ export const formatTimestampToDate = (timestamp:string) => {
     return `${year}-${month}-${day}`;
   };
   
+
+  export function formatToReadableTime(timestamp: string): string {
+    const date = new Date(timestamp);
+    const options: Intl.DateTimeFormatOptions = { weekday: 'short', year: 'numeric', month: '2-digit', day: '2-digit' };
+    return new Intl.DateTimeFormat('en-US', options).format(date);
+  }
+  

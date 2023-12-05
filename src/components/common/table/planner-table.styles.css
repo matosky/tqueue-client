@@ -75,7 +75,7 @@
     display: table-cell;
     border: solid;
     border-width: thin;
-    padding: 2rem 3rem;
+    padding: 1rem 0.5rem;
     white-space: nowrap;
     text-align: left;
   }
