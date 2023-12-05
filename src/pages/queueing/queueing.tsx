@@ -68,12 +68,12 @@ const Queueing = () => {
         onSuccess: (data) => {
           // Show success toast
           setForceUpdate((prev) => !prev);
-          toast.success('Delivery shipped successfully!');
+          toast.success('Added to queue successfully!!');
         },
         onError: (error) => {
           console.log("error", error);
           // Show error toast
-          toast.error('Failed to update delivery!');
+          toast.error('Failed to update planner!');
         },
       });
     } else {
