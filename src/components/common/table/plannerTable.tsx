@@ -129,7 +129,7 @@ const PlannerTable: React.FC<PlannerTableProps> = ({ planners, onDrop }) => (
       <TableRow
         key={rowIndex}
         planner={planner}
-        currentDay={planner.date}
+        currentDay={planner?.date}
         rowIndex={rowIndex}
         onDrop={onDrop}
       />

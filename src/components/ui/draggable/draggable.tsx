@@ -30,7 +30,7 @@ export const Draggable: React.FC<TableProps> = ({ customer }) => {
   const [endDate, setEndDate] = useState<string | undefined>();
 
 
-  const draggableItem = {...customer, startDate, endDate}
+  const item = {...customer, startDate, endDate}
   const { data, error, isLoading } = useQuery("plannerData", () =>
   getCurrentPlanner()
 );
@@ -46,7 +46,7 @@ export const Draggable: React.FC<TableProps> = ({ customer }) => {
 
   const [{ isDragging }, drag] = useDrag(() => ({
     type: ItemTypes.BOX,
-    item: { data: draggableItem },
+    item: { data: item },
     end: (item, monitor) => {
       const dropResult = monitor.getDropResult();
       if (item && dropResult ) {
